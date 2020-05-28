@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS "pauta" (
 
 CREATE TABLE IF NOT EXISTS "sessao" (
   "id" SERIAL NOT NULL,
-  "init" DATE NOT NULL,
-  "close" DATE NOT NULL,
+  "init" TIMESTAMP NOT NULL,
+  "close" TIMESTAMP NOT NULL,
   "pauta_id" INT NOT NULL,
   PRIMARY KEY ("id"),
   CONSTRAINT "fk_sessao_pauta1"
@@ -26,16 +26,16 @@ CREATE TABLE IF NOT EXISTS "sessao" (
 
 CREATE TABLE IF NOT EXISTS "votos" (
   "sessao_id" INT NOT NULL,
-  "usuario_id" INT NOT NULL,
+  "usuario_cpf" INT NOT NULL,
   "value" VARCHAR(3) NOT NULL,
-  PRIMARY KEY ("sessao_id", "usuario_id"),
+  PRIMARY KEY ("sessao_id", "usuario_cpf"),
   CONSTRAINT "fk_sessao_has_usuario_sessao"
     FOREIGN KEY ("sessao_id")
     REFERENCES "sessao" ("id")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT "fk_sessao_has_usuario_usuario1"
-    FOREIGN KEY ("usuario_id")
-    REFERENCES "usuario" ("id")
+    FOREIGN KEY ("usuario_cpf")
+    REFERENCES "usuario" ("cpf")
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);

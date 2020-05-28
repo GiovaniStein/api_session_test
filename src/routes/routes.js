@@ -8,8 +8,10 @@ const routes = Router();
 
 
 routes.post('/usuario', usuario.createUsuario);
+routes.get('/usuario', usuario.usuarioInfo);
 
 routes.post('/pauta', pauta.createPauta);
+routes.get('/pauta', pauta.listPauta);
 
 routes.post('/sessao', sessao.createSessao);
 

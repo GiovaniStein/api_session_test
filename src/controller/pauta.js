@@ -16,7 +16,7 @@ const listPauta = (request, response) => {
     try {
         rp.listPauta((res) => {
             response.status(200).send(res);
-        } )
+        })
     } catch (e) {
         response.status(500).send(e);
         throw new Error(e);
@@ -25,4 +25,5 @@ const listPauta = (request, response) => {
 
 module.exports = {
     createPauta,
+    listPauta,
 } 

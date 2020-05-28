@@ -1,9 +1,9 @@
 const vr = require('../repository/votoRepository');
 
 const insertVoto = async (request, response) => {
-    const { sessaoId, usuarioId, value } = request.body;
+    const { sessaoId, usuarioCpf, value } = request.body;
     try {
-        vr.insertVoto(sessaoId, usuarioId, value, (res) => {
+        vr.insertVoto(sessaoId, usuarioCpf, value, (res) => {
             response.status(201).send(true);
         })
     } catch (e) {

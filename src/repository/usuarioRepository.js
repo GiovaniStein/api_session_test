@@ -6,7 +6,14 @@ const createUsuario = (name, email, password, cpf, cb) => {
     db.executeQuery(query, params, cb);
 }
 
+const userInfo = (email, password, cb) => {
+    var query = 'SELECT "id", "name", "cpf" FROM usuario WHERE "email" = $1 AND "password" = $2';
+    var params = [email, password, cb];
+    db.executeQuery(query, params, cb);
+}
+
 
 module.exports = {
-    createUsuario
+    createUsuario,
+    userInfo,
 } 

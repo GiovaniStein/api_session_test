@@ -12,6 +12,21 @@ const createUsuario = (request, response) => {
     }
 }
 
+const usuarioInfo = (request, response) => {
+    const { email, password } = request.query;
+    try {
+        ur.userInfo(email, password, (res) => {
+            if (res.length > 0) {
+                response.status(201).send(res[0]);
+            }
+        })
+    } catch (e) {
+        response.status(500).send(e);
+        throw new Error(e);
+    }
+}
+
 module.exports = {
     createUsuario,
+    usuarioInfo,
 } 
