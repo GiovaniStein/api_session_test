@@ -7,9 +7,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js" 
+    "start": "node src/server.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "cors": "^2.8.5",
     "db-migrate": "^0.11.11",
     "db-migrate-pg": "^1.2.2",

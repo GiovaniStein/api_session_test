@@ -6,6 +6,13 @@ const createSessao = (init, close, pautaId, cb) => {
     db.executeQuery(query, params, cb);
 }
 
+const verifySessaoIsClose = (sessaoId, cb) => {
+    var query = 'SELECT * FROM "sessao" WHERE "id" = $1 AND "close" >= NOW()::timestamp AND "init" <= NOW()::timestamp';
+    var params = [sessaoId];
+    db.executeQuery(query, params, cb);
+}
+
 module.exports = {
-    createSessao
+    createSessao,
+    verifySessaoIsClose
 } 

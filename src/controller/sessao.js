@@ -12,10 +12,6 @@ const createSessao = (request, response) => {
     }
 }
 
-const getSessaoByPauta = () => {
-    
-}
-
 module.exports = {
     createSessao
 }

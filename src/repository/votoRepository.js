@@ -6,7 +6,13 @@ const insertVoto = (sessaoId, usuarioCpf, value, cb) => {
     db.executeQuery(query, params, cb);
 }
 
+const verifyCpfAlreadyUse = (usuarioCpf, sessaoId, cb) => {
+    var query = 'SELECT * FROM "votos" WHERE "sessao_id"= $1 AND "usuario_cpf" = $2';
+    var params = [sessaoId, usuarioCpf];
+    db.executeQuery(query, params, cb);
+}
 
 module.exports = {
-    insertVoto
+    insertVoto,
+    verifyCpfAlreadyUse
 } 

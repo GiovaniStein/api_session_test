@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS "sessao" (
 
 CREATE TABLE IF NOT EXISTS "votos" (
   "sessao_id" INT NOT NULL,
-  "usuario_cpf" INT NOT NULL,
+  "usuario_cpf" NUMERIC(11,0) NOT NULL,
   "value" VARCHAR(3) NOT NULL,
   PRIMARY KEY ("sessao_id", "usuario_cpf"),
   CONSTRAINT "fk_sessao_has_usuario_sessao"
