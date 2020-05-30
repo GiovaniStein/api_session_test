@@ -29,6 +29,8 @@ Postgressql
 
 # Endpoints:
 
+**Ex: http://localhost:3333{endoint}*
+
 **//POST**
 
 **Cadastrar um usuário** => /usuario
