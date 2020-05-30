@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool
-const Config = require('../config/config')
+const Config = require('../config/config');
+const utils = require('../utils/utils');
 
 const pool = new Pool({
   user: Config.DB_USER,
@@ -13,9 +14,11 @@ const executeQuery = (query, params, cb) => {
   console.info('[QUERY]: ', JSON.stringify(query));
   pool.query(query, params, (error, results) => {
     if (error) {
-      throw error
+      utils.logger(error);
+      console.error(error);
+    } else {
+      cb(results.rows);
     }
-    cb(results.rows);
   })
 };
 

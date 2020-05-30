@@ -1,6 +1,5 @@
 const ur = require('../repository/usuarioRepository');
 const crypto = require('crypto');
-const api = require('../service/Api');
 const utils = require('../utils/utils');
 
 const createUsuario = (request, response) => {
@@ -13,7 +12,7 @@ const createUsuario = (request, response) => {
         });
     } catch (e) {
         response.status(500).send(e);
-        throw new Error(e);
+        console.error(e);
     }
 }
 
@@ -21,14 +20,9 @@ const verifyCpf = (request, response, next) => {
     const { cpf } = request.body;
     utils.verfyParams([cpf], response);
     try {
-        ur.verifyCpfInUse(cpf, async (res) => {
+        ur.verifyCpfInUse(cpf, (res) => {
             if (res.length === 0) {
-                var result = await api.verifyCpfIsValid(cpf);
-                if (!!result && result === 'ABLE_TO_VOTE') {
-                    next();
-                } else {
-                    response.status(500).send('O Cpf informado não é válido');
-                }
+                next();
             } else {
                 response.status(500).send('O Cpf informado já está cadastrado');
             }
@@ -36,7 +30,8 @@ const verifyCpf = (request, response, next) => {
 
     } catch (e) {
         response.status(500).send(e);
-        throw new Error(e);
+        utils.logger(error);
+        console.error(e);
     }
 }
 

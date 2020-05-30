@@ -10,7 +10,8 @@ const createSessao = (request, response) => {
         });
     } catch (e) {
         response.status(500).send(e);
-        throw new Error(e);
+        utils.logger(error);
+        console.error(e);
     }
 }
 
@@ -25,7 +26,8 @@ const getSessaoResults = (request, response) => {
         })
     } catch (e) {
         response.status(500).send(e);
-        throw new Error(e);
+        utils.logger(error);
+        console.error(e);
     }
 }
 

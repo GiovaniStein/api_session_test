@@ -1,4 +1,5 @@
 const axios = require('axios');
+const utils = require('../utils/utils');
 
 const verifyCpfIsValid = async (cpf) => {
   try {
@@ -9,7 +10,9 @@ const verifyCpfIsValid = async (cpf) => {
       return null;
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
+    utils.logger(error);
+    return null;
   }
 }
 
