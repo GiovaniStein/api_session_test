@@ -43,7 +43,6 @@ body:
 	"password": "teste"
 }
 
-**OBS**: Não será possível cadastra usuário com cpf inválido, foi feita uma integração com o serviço que verifica o mesmo.
 
 **Cadastrar uma pauta** => /pauta
 
@@ -72,7 +71,7 @@ body:
 }
 
 **OBS**: Valor 1 = Sim e 0 = Não
-
+**OBS2**: Foi feita uma integração com a Api externa de verificação de cpf. Caso o mesmo sejá inválido não será possivel concluir a operação. 
 
 **//GET**
 
