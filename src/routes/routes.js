@@ -8,12 +8,12 @@ const routes = Router();
 
 
 routes.post('/usuario', usuario.verifyCpf, usuario.createUsuario);
-routes.get('/usuario', usuario.usuarioInfo);
 
 routes.post('/pauta', pauta.createPauta);
 routes.get('/pauta', pauta.listPauta);
 
 routes.post('/sessao', sessao.createSessao);
+routes.get('/sessao', sessao.getSessaoResults);
 
 routes.post('/voto', voto.verifyUsuarioAndSessao, voto.insertVoto);
 

@@ -1,8 +1,10 @@
 const vr = require('../repository/votoRepository');
 const sr = require('../repository/sessaoRepository');
+const utils = require('../utils/utils');
 
 const insertVoto = async (request, response) => {
     const { sessaoId, usuarioCpf, value } = request.body;
+    utils.verfyParams([sessaoId, usuarioCpf, value], response);
     try {
         vr.insertVoto(sessaoId, usuarioCpf, value, (res) => {
             response.status(201).send(true);
@@ -15,6 +17,7 @@ const insertVoto = async (request, response) => {
 
 const verifyUsuarioAndSessao = async (request, response, next) => {
     const { sessaoId, usuarioCpf } = request.body;
+    utils.verfyParams([sessaoId, usuarioCpf], response);
     try {
         sr.verifySessaoIsClose(sessaoId, (res) => {
             if (res.length === 0) {
