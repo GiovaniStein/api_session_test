@@ -71,6 +71,7 @@ body:
 }
 
 **OBS**: Valor 1 = Sim e 0 = Não
+
 **OBS2**: Foi feita uma integração com a Api externa de verificação de cpf. Caso o mesmo sejá inválido não será possivel concluir a operação. 
 
 **//GET**
