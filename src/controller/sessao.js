@@ -19,9 +19,9 @@ const getSessaoResults = (request, response) => {
     utils.verfyParams([sessaoId], response);
     try {
         sr.getSessaoResults(sessaoId, (res) => {
-            res.length > 0 ? 
-            response.status(200).send(res) :
-            response.status(500).send('A sessão informada não existe ou está em andamento');
+            res.length > 0 ?
+                response.status(200).send(res) :
+                response.status(500).send('A sessão informada não existe ou está em andamento');
         })
     } catch (e) {
         response.status(500).send(e);
