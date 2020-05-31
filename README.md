@@ -18,6 +18,8 @@ Postgressql
 **axios**: utilizado para fazer requisições http para serviços externos.<br/>
 **cors**: permite a utilização e configuração do CORS em requisições http.<br/>
 **dotenv**: permite utilização de variaveis de configuração de arquivos .env.<br/>
+**jest**: usado para realizar testes automatizados nas Api's.<br/>
+**simple-node-logger**: usado para registrar logs em arquivo.
 
 # Como Utilizar:
 
@@ -29,7 +31,9 @@ Postgressql
 
 # Endpoints:
 
-**Ex: http://localhost:3333{endoint}**
+**Versão da API**: v1
+
+**Ex: http://localhost:3333/v1/{endoint}**
 
 **//POST**
 
