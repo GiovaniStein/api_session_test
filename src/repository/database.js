@@ -16,6 +16,7 @@ const executeQuery = (query, params, cb) => {
     if (error) {
       utils.logger(error);
       console.error(error);
+      cb(`error: ${error}`);
     } else {
       cb(results.rows);
     }

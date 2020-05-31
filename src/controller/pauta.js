@@ -1,10 +1,13 @@
 const rp = require('../repository/pautaRepository');
 const utils = require('../utils/utils');
+const messages = require('../message/messages');
 
 const createPauta = (request, response) => {
     const { name, description } = request.body
     try {
         rp.createPauta(name, description, (res) => {
+            res.includes('error') ? 
+            response.status(500).send(res) : 
             response.status(201).send(true);
         })
     } catch (e) {
@@ -17,9 +20,13 @@ const createPauta = (request, response) => {
 const listPauta = (request, response) => {
     try {
         rp.listPauta((res) => {
-            res.length > 0 ?
+            if (res.includes('error')) {
+                response.status(500).send(res);
+            } else {
+                res.length > 0 ?
                 response.status(200).send(res) :
-                response.status(200).send('Não há novas pautas para votar');
+                response.status(200).send(messages.noPautas);
+            }
         })
     } catch (e) {
         response.status(500).send(e);
@@ -32,9 +39,7 @@ const listPautaByName = (request, response) => {
     const { name } = request.query;
     try {
         rp.getPautaByName(name, (res) => {
-            res.length > 0 ?
-                response.status(200).send(res) :
-                response.status(200).send([]);
+            response.status(res.includes('error') ? 500 : 200).send(res);
         })
     } catch (e) {
         response.status(500).send(e);
@@ -47,7 +52,9 @@ const deletePauta = (request, response) => {
     const { id } = request.query;
     try {
         rp.deletePauta(id, (res) => {
-            response.status(200).send(true)
+            res.includes('error') ? 
+            response.status(500).send(res) : 
+            response.status(200).send(true);
         })
     } catch (e) {
         response.status(500).send(e);
