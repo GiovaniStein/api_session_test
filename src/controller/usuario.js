@@ -1,24 +1,49 @@
 const ur = require('../repository/usuarioRepository');
-const crypto = require('crypto');
 const utils = require('../utils/utils');
 
 const createUsuario = (request, response) => {
     const { name, email, password, cpf } = request.body;
-    utils.verfyParams([name, email, password, cpf], response);
     try {
-        var newPassword = crypto.createHash('sha256').update(password).digest('base64');
-        ur.createUsuario(name, email, newPassword, cpf, (res) => {
+        ur.createUsuario(name, email, utils.cryptPassword(password), cpf, (res) => {
             response.status(201).send(true);
         });
     } catch (e) {
         response.status(500).send(e);
+        utils.logger(e);
+        console.error(e);
+    }
+}
+
+const usuarioInfo = (request, response) => {
+    const { email, password } = request.query;
+    try {
+        ur.usuarioInfo(email, utils.cryptPassword(password), (res) => {
+            res.length > 0 ?
+                response.status(200).send(res) :
+                response.status(200).send([]);
+        })
+    } catch (e) {
+        response.status(500).send(e);
+        utils.logger(e);
+        console.error(e);
+    }
+}
+
+const deleteUsuario = (request, response) => {
+    const { id } = request.query;
+    try {
+        ur.deleteUsuario(id, (res) => {
+            response.status(200).send(true);
+        })
+    } catch (e) {
+        response.status(500).send(e);
+        utils.logger(e);
         console.error(e);
     }
 }
 
 const verifyCpf = (request, response, next) => {
     const { cpf } = request.body;
-    utils.verfyParams([cpf], response);
     try {
         ur.verifyCpfInUse(cpf, (res) => {
             if (res.length === 0) {
@@ -30,7 +55,7 @@ const verifyCpf = (request, response, next) => {
 
     } catch (e) {
         response.status(500).send(e);
-        utils.logger(error);
+        utils.logger(e);
         console.error(e);
     }
 }
@@ -38,4 +63,6 @@ const verifyCpf = (request, response, next) => {
 module.exports = {
     createUsuario,
     verifyCpf,
+    usuarioInfo,
+    deleteUsuario,
 } 

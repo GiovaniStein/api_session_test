@@ -24,20 +24,15 @@ const insertVoto = async (request, response) => {
         })
     } catch (e) {
         response.status(500).send(e);
-        utils.logger(error);
+        utils.logger(e);
         console.error(e);
     }
 }
 
 const verifyUsuarioAndSessao = (request, response, next) => {
     const { sessaoId, usuarioCpf, value } = request.body;
-
     try {
-
-        utils.verfyParams([sessaoId, usuarioCpf, value], response);   
-
-        utils.logger();
-        
+    
         sr.verifySessaoIsClose(sessaoId, (res) => {
             if (res.length === 0) {
                 response.status(500).send('A sessão informada não está mais aberta para votos');
@@ -53,7 +48,7 @@ const verifyUsuarioAndSessao = (request, response, next) => {
         })
     } catch (e) {
         response.status(500).send(e);
-        utils.logger(error);
+        utils.logger(e);
         console.error(e);
     }
 }

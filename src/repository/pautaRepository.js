@@ -11,7 +11,21 @@ const listPauta = (cb) => {
     db.executeQuery(query, [], cb);
 }
 
+const getPautaByName = (name, cb) => {
+    var query = 'SELECT * FROM "pauta" WHERE "name" = $1';
+    var params = [name];
+    db.executeQuery(query, params, cb);
+}
+
+const deletePauta = (id, cb) => {
+    var query = 'DELETE FROM "pauta" WHERE "id" = $1';
+    var params = [id];
+    db.executeQuery(query, params, cb);
+}
+
 module.exports = {
     createPauta,
     listPauta,
+    getPautaByName,
+    deletePauta,
 } 

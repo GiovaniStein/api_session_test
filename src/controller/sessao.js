@@ -3,21 +3,19 @@ const utils = require('../utils/utils');
 
 const createSessao = (request, response) => {
     const { init, close, pautaId } = request.body;
-    utils.verfyParams([init, close, pautaId], response);
     try {
         sr.createSessao(init, close, pautaId, (res) => {
             response.status(201).send(true);
         });
     } catch (e) {
         response.status(500).send(e);
-        utils.logger(error);
+        utils.logger(e);
         console.error(e);
     }
 }
 
 const getSessaoResults = (request, response) => {
     const { sessaoId } = request.query;
-    utils.verfyParams([sessaoId], response);
     try {
         sr.getSessaoResults(sessaoId, (res) => {
             res.length > 0 ?
@@ -26,7 +24,7 @@ const getSessaoResults = (request, response) => {
         })
     } catch (e) {
         response.status(500).send(e);
-        utils.logger(error);
+        utils.logger(e);
         console.error(e);
     }
 }

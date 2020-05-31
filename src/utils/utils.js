@@ -1,13 +1,9 @@
 const config = require('../config/config');
 const log = require('simple-node-logger').createSimpleFileLogger(config.LOG_FILE);
+const crypto = require('crypto');
 
-const verfyParams = (params, response) => {
-    params.map(param => {
-        if (!param) {
-            response.status(500).send('Um ou mais parametros estão em branco. Por favor, verifique os parametros informados e tente novamente');
-            return;
-        }
-    })
+const cryptPassword = (password) => {
+    return crypto.createHash('sha256').update(password).digest('base64');
 }
 
 const logger = (error) => {
@@ -15,6 +11,6 @@ const logger = (error) => {
 }
 
 module.exports = {
-    verfyParams,
     logger,
+    cryptPassword,
 }
