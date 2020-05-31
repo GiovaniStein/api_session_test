@@ -15,7 +15,7 @@ const Config = {
     'DB_PASSWORD': DB_PASSWORD || 'postgres',
     'DB_PORT': DB_PORT || 5432,
     'LOG_FILE': LOG_FILE || `${appRoot}/app_logs.log`,
-    'API_VERSION': API_VERSION || 'V1'
+    'API_VERSION': API_VERSION || 'v1'
 };
 
 module.exports = Config;
