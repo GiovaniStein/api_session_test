@@ -28,6 +28,7 @@ Postgressql
 **yarn install** => instalar dependências da aplicação.<br/>
 **yarn start** => inicializa o server http.<br/>
 **yarn dev** => inicializa o server http em modo desenvolvimento.<br/>
+**yarn test** => rodar rotina de testes na Api.<br/>
 
 # Endpoints:
 
@@ -46,7 +47,6 @@ body:
 	"cpf": "1111111111",
 	"password": "teste"
 }
-
 
 **Cadastrar uma pauta** => /pauta
 
@@ -88,6 +88,16 @@ body:
 
 **OBS**: Só retorna o resultado caso a sessão já tenho terminado.
 
+**Retorna informações de um usuário** => /usuario?email={email}&&password={password}
+
+**Retorna informações de uma pauta** => /pauta/byName?name={name}
+
+
+**//DELETE**
+
+**Deletar usuario** => /usuario?id={id}
+
+**Deletar pauta** => /pauta?id={id}
 
 
 
